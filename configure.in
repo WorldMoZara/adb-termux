@@ -5,7 +5,7 @@ AC_PREREQ(2.67)
 AC_INIT(adb, 1.0.1, karfield@126.com)
 AC_CONFIG_SRCDIR(src/adb.h)
 AC_CONFIG_HEADERS(config.h)
-AM_INIT_AUTOMAKE(test, 1.0)
+AM_INIT_AUTOMAKE(test, 1.16)
 
 # Checks for programs.
 AC_PROG_CC
