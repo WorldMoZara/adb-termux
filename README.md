@@ -1,5 +1,5 @@
 # adb-termux
-
+A fork for installing adb easily on termux.  
 forked from [https://github.com/karfield/adb/](https://github.com/karfield/adb/)  
 a little configured by @WorldMoZara  
 Quickly install it by:
