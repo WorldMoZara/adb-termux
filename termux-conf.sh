@@ -14,22 +14,33 @@ esac
 cd $(realpath $(dirname $0))
 
 echo Start installing...
-
+echo ------S-Y-M-L-I-N-K------
 PA_AUTOMAKE=$PREFIX/share/automake-1.*
 PA_LIBTOOL=$PREFIX/share/libtool/build-aux
-
 ln -sf $PA_AUTOMAKE/depcomp depcomp
 ln -sf $PA_AUTOMAKE/install-sh install-sh
 ln -sf $PA_LIBTOOL/ltmain.sh ltmain.sh
-
-sed -i 's/AM_INIT_AUTOMAKE(test\,\ 1.0)/AM_INIT_AUTOMAKE(test\,\ 1.16)/' configure.in
-sed -i 's/2.4.2/2.4.6/' aclocal.m4
-
+echo ------R-E-C-O-N-F--F-I-L-E-N-A-M-E------
+mv Makefile.in Makefile.ac
+mv configure.in configure.ac
+echo ------A-U-T-O-G-E-N------
+bash ./autogen.sh
+echo ------A-D-D--M-I-S-S-I-N-G------
 automake --add-missing
-bash ./autogen.sh
-bash ./autogen.sh
+# autoreconf && autoupdate
+echo ------C-O-N-F-I-G-U-R-E------
 bash ./configure
+echo
+echo ------M-A-K-E------
 make -j4
-cp -f src/adb fastboot/fastboot $PREFIX/bin
+echo ------C-O-P-Y--F-I-L-E------
+if test -e src/adb
+then
+    cp -f src/adb $PREFIX/bin
+fi
+if test -e fastboot/fastboot
+then
+    cp -f fastboot/fastboot $PREFIX/bin
+fi
 
 echo Operation complete!
