@@ -15,7 +15,7 @@ cd $(realpath $(dirname $0))
 
 echo Start installing...
 echo ------D-E-P-E-N-D-E-N-C-Y------
-pkg install libtool make automake -y
+pkg install libtool make automake clang -y
 echo ------S-Y-M-L-I-N-K------
 PA_AUTOMAKE=$PREFIX/share/automake-1.*
 PA_LIBTOOL=$PREFIX/share/libtool/build-aux
